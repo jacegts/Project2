@@ -1,6 +1,6 @@
 <?php
 namespace Common\Authentication;
-require 'IAuthentication.php';
+//require 'IAuthentication.php';
 
 //FileAuth interface implementation
 class FileAuth implements IAuthentication

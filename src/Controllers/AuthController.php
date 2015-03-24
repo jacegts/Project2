@@ -58,26 +58,25 @@ class AuthController extends Controller
         //echo $postData->username;
         //echo $postData->authType;
         
-        if ($postData->authType==='Mem')
-        {
-            $Auth = new MemAuth($postData->username,$postData->password);
-        }
-        if($postData->authType==='File')
-        {
-            $Auth =  new FileAuth($postData->username,$postData->password);
-        }
+//        if ($postData->authType==='Mem')
+//        {
+//            $Auth = new MemAuth($postData->username,$postData->password);
+//        }
+//        if($postData->authType==='File')
+//        {
+//            $Auth =  new FileAuth($postData->username,$postData->password);
+//        }
+//        
+//        if ($postData->authType==='MySQL')
+//        {
+//            $Auth = new MySQLAuth($postData->username,$postData->password);
+//        }
+//        if($postData->authType==='SQLite')
+//        {
+//            $Auth =  new SQLiteAuth($postData->username,$postData->password);
+//        }
         
-        if ($postData->authType==='MySQL')
-        {
-            $Auth = new MySQLAuth($postData->username,$postData->password);
-        }
-        if($postData->authType==='SQLite')
-        {
-            $Auth =  new SQLiteAuth($postData->username,$postData->password);
-        }
-        
-        //authTypeCheck($postData)->authenticate();
-        $Auth->authenticate();
+        $this->authTypeCheck($postData)->authenticate();
 
         
 
