@@ -1,14 +1,18 @@
 <?php
 
-class SQLiteAuth implements CommonAuthInterface
+namespace Common\Authentication;
+require 'IAuthentication.php';
+use PDO;
+
+class SQLiteAuth implements IAuthentication
 {
-    public function __construct($post)
+    public function __construct($username, $password)
     {        
-        $this->username=$post->getUsername();
-        $this->password=$post->getPassword();
+        $this->username=$username;
+        $this->password=$password;
         try
         {
-            $this->conn = new PDO('sqlite:SQLitetest.sqlite');
+            $this->conn = new PDO('sqlite:../src/Common/Authentication/SQLitetest.sqlite');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e)

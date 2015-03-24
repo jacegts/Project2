@@ -1,4 +1,7 @@
 <?php
+
+namespace Common\Authentication;
+
 //creating an object from the $_POST variables 
 class PostRequest
 {

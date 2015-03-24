@@ -1,15 +1,21 @@
 <?php
+namespace Common\Authentication;
+require 'IAuthentication.php';
 
 //MemAuth interface implementation
-class MemAuth implements CommonAuthInterface
+class MemAuth implements IAuthentication
 {
     protected $username;
     protected $password;
-    
-    public function __construct($post)
+    protected $user=[];
+    public function __construct($username, $password)
     {
-        $this->username=$post->getUsername();
-        $this->password=$post->getPassword();
+//        $this->user[0]=$username;
+//        $this->user[1]=$password;
+        $this->username=$username;
+        $this->password=$password;
+//        echo $this->user[0];
+//        echo $this->user[1];
     }
     public function authenticate()
     {

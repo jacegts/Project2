@@ -1,16 +1,20 @@
 <?php
 
+namespace Common\Authentication;
+require 'IAuthentication.php';
+use PDO;
+
 //MySQLAuth interface implementation
-class MySQLAuth implements CommonAuthInterface
+class MySQLAuth implements IAuthentication
 {
     protected $username;
     protected $password;
     protected $conn;
 
-    public function __construct($post)
+    public function __construct($username, $password)
     {
-        $this->username=$post->getUsername();
-        $this->password=$post->getPassword();
+        $this->username=$username;
+        $this->password=$password;
         try
         {
             $this->conn = new PDO('mysql:host=localhost;dbname=test','root','1234');
@@ -23,7 +27,7 @@ class MySQLAuth implements CommonAuthInterface
     }
     public function authenticate()
     {
-        $data=$this->conn->query('SELECT UserName FROM USER WHERE UserName= '.$this->conn->quote($this->username).'AND Password = '.$this->conn->quote($this->password));
+        $data=$this->conn->query('SELECT UserName FROM USER WHERE BINARY UserName= '.$this->conn->quote($this->username).'AND BINARY Password = '.$this->conn->quote($this->password));
 //        echo var_dump($data);
         $result=$data->fetchAll();
         if (count($result)!=1)
